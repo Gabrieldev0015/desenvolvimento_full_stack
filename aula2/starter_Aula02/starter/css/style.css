@@ -107,12 +107,18 @@ img {
    Dica: display: flex + flex-wrap + gap no container;
          flex-grow/flex-shrink/flex-basis + max-width no item.
 */
-
+.cards-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+}
 .card {
   background: var(--cor-branco);
   border-radius: var(--raio);
   box-shadow: var(--sombra);
   overflow: hidden;
+  flex: 1 1 280px;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -200,6 +206,11 @@ img {
 /* .detalhe ainda não tem nenhum estilo de layout — veja o TODO (Aula 02,
    Parte 2) mais abaixo, perto da media query, com o passo a passo
    completo. */
+
+.detalhe{
+  display:grid;
+  gap: var(--espaco-3);
+}
 
 .detalhe-principal,
 .detalhe-resumo,
@@ -326,7 +337,17 @@ img {
    empilhado) e só depois "encaixe" o grid para telas maiores — essa é
    a essência de mobile-first.
 */
-
+@media (min-width: 768px){
+  .detalhe{
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+    "principal resumo"
+    "avaliacoes avaliacoes"
+  }
+  .detalhe-principal{ grid-area: principal;}
+  .detalhe-resumo{ grid-area: resumo;}
+  .detalhe-avaliacoes{ grid-area: avaliacoes;}
+}
 /* ===== Rodapé ===== */
 .rodape {
   text-align: center;
